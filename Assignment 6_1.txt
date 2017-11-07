@@ -1,0 +1,52 @@
+hive> show databases;
+OK
+b1
+default
+Time taken: 0.053 seconds, Fetched: 2 row(s)
+hive> create database custom;
+OK
+Time taken: 0.052 seconds
+hive> use custom;
+OK
+Time taken: 0.042 seconds
+hive> create table if not exists temperature_data
+(
+date string,
+zip_code int,
+temperature int
+)
+row format delimited
+fields terminated by ',';
+OK
+Time taken: 0.17 seconds
+hive> LOAD DATA LOCAL INPATH '/home/acadgild/hive/dataset.txt' INTO TABLE temperature_data;
+Loading data to table custom.temperature_data
+Table custom.temperature_data stats: [numFiles=1, totalSize=437]
+OK
+Time taken: 3.207 seconds
+hive> SELECT * FROM temperature_data;
+OK
+10-01-1990	123112	10
+14-02-1991	283901	11
+10-03-1990	381920	15
+10-01-1991	302918	22
+12-02-1990	384902	9
+10-01-1991	123112	11
+14-02-1990	283901	12
+10-03-1991	381920	16
+10-01-1990	302918	23
+12-02-1991	384902	10
+10-01-1993	123112	11
+14-02-1994	283901	12
+10-03-1993	381920	16
+10-01-1994	302918	23
+12-02-1991	384902	10
+10-01-1991	123112	11
+14-02-1990	283901	12
+10-03-1991	381920	16
+10-01-1990	302918	23
+12-02-1991	384902	10
+Time taken: 1.349 seconds, Fetched: 20 row(s)
+hive> 
+
+
